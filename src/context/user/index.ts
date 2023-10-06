@@ -1,5 +1,5 @@
-const Router =  require('express').Router;
-const userContext = require('./controller');
+import { Router } from 'express';
+import * as userContext from './controller';
 
 const router = Router();
 
@@ -12,4 +12,4 @@ router.route('/:id')
   .put(userContext.editUser)
   .delete(userContext.deleteUser);
 
-module.exports = router;
+export default router;
