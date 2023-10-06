@@ -1,34 +1,19 @@
-const userRepository = require('../../db/repositories/userRepository');
+import * as userRepository from "../../db/repositories/userRepository";
 
-const userMocks = [
-    {
-        id: 1,
-        firstName: 'Rafael',
-        lastName: 'Pegoretti',
-        age: 23,
-        email: 'rafael@email.com'
-    },
-    {
-        id: 2,
-        firstName: 'Lino',
-        lastName: 'Pegoretti',
-        age: 45,
-        email: 'lino@email.com'
-    },
-]
+import { User } from "../../models/user.model"
 
-async function getUsers() {
+export async function getUsers() {
     return await userRepository.getAllUsers();
 }
 
-async function createUser(user) {
+export async function createUser(user: User) {
     if (!user || !user.firstName || !user.lastName || !user.age || !user.email) {
         throw new Error('Prencha todos os dados necessários!')
     }
     return await userRepository.createUser(user);
 }
 
-async function getUserById(userId) {
+export async function getUserById(userId: number) {
     if (!userId) {
         throw new Error('Id do usuário é necessário!')
     }
@@ -39,25 +24,16 @@ async function getUserById(userId) {
     return userFound
 }
 
-async function editUserById(userId, user) {
+export async function editUserById(userId: number, user: User) {
     if (!userId) {
         throw new Error('Id do usuário é necessário!')
     }
     return await userRepository.editUser(userId, user);
 }
 
-async function deleteUserById(userId) {
+export async function deleteUserById(userId: number) {
     if (!userId) {
         throw new Error('Id do usuário é necessário!')
     }
     return await userRepository.deleteUser(userId);
-}
-
-
-module.exports = {
-    createUser,
-    getUsers,
-    getUserById,
-    editUserById,
-    deleteUserById
 }

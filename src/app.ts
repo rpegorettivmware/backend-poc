@@ -1,8 +1,9 @@
-const express = require('express');
-const app = express();
-const routes = require('./routes')
+import express, { Application } from "express";
+import routes from "./routes";
+import dbConect from "./db";
+
+const app: Application = express();
 const PORT = process.env.PORT || 3500;
-const dbConect = require('./db')
 
 dbConect();
 
